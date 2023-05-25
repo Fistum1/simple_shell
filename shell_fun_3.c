@@ -1,8 +1,9 @@
 #include "shell.h"
 
 /**
- * _myunsetenv - It removes an environment variable
- * @info: The structure containing potential arguments. Used to maintain
+ * _myunsetenv - It remove an environment variable
+ * 
+ * @info: Structure containing potential arguments. Used to maintain
  *        constant function prototype.
  *  Return: Always 0
  */
@@ -22,10 +23,12 @@ int _myunsetenv(info_t *info1)
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: The structure containing potential arguments. It used to maintain
+ * populate_env_list - It populates env linked list
+ * 
+ * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
+ * 
  */
 int populate_env_list(info_t *info1)
 {
@@ -39,20 +42,25 @@ int populate_env_list(info_t *info1)
 }
 
 /**
- * _myenv - prints the current environment
- * @info: The structure containing potential arguments. It used to maintain
+ * _myenv - It prints the current environment
+ * 
+ * @info: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  * Return: Always 0
+ * 
  */
 int _myenv(info_t *info1)
 {
 	print_list_str(info1->env);
 	return (0);
 }
+
 /**
- * _getenv - It gets the value of an environ variable.
- * @info: The structure containing potential arguments. It used to maintain.
+ * _getenv - It gets the value of an environ variable
+ * 
+ * @info: Structure containing potential arguments. Used to maintain
  * @name: env var name
+ *
  * Return: the value
  */
 char *_getenv(info_t *info1, const char *name)
@@ -71,9 +79,13 @@ char *_getenv(info_t *info1, const char *name)
 }
 
 /**
- * _mysetenv - It initialize a new environment variable or modify an existing one
- * @info: The structure containing potential arguments. Used to maintain constant function prototype.
+ * _mysetenv - It initialize a new environment variable,
+ *             or modify an existing one
+ * 
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
  *  Return: Always 0
+ * 
  */
 int _mysetenv(info_t *info1)
 {

@@ -1,23 +1,26 @@
 #include "shell.h"
 
 /**
- * _erratoi - It converts a string to an integer.
- * @s: The string to be converted.
- * Return: 0 if no numbers in string, converted number otherwise -1 on error.
+ * _erratoi - It converts a string to an integer
+ * 
+ * @s: the string to be converted
+ * Return: 0 if no numbers in string, converted number otherwise
+ *       -1 on error
+ * 
  */
-int _erratoi(char *s1)
+int _erratoi(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
-	if (*s1 == '+')
-		s1++;  
-	for (i = 0; s1[i] != '\0'; i++)
+	if (*s == '+')
+		s++;  
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (s1[i] >= '0' && s1[i] <= '9')
+		if (s[i] >= '0' && s[i] <= '9')
 		{
 			result *= 10;
-			result += (s1[i] - '0');
+			result += (s[i] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -28,11 +31,13 @@ int _erratoi(char *s1)
 }
 
 /**
- * print_error - prints an error message
+ * print_error - It prints an error message
+ * 
  * @info: the parameter & return info struct
  * @estr: string containing specified error type
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
+ * 
  */
 void print_error(info_t *info1, char *estr)
 {
@@ -46,27 +51,29 @@ void print_error(info_t *info1, char *estr)
 }
 
 /**
- * print_d - function prints a decimal (integer) number (base 10)
+ * print_d - It function prints a decimal (integer) number (base 10)
+ * 
  * @input: the input
  * @fd: the filedescriptor to write to
+ *
  * Return: number of characters printed
  */
-int print_d(int input1, int fd)
+int print_d(int input, int fd1)
 {
 	int (*__putchar)(char) = _putchar;
 	int i, count = 0;
 	unsigned int _abs_, current;
 
-	if (fd == STDERR_FILENO)
+	if (fd1 == STDERR_FILENO)
 		__putchar = _eputchar;
-	if (input1 < 0)
+	if (input < 0)
 	{
-		_abs_ = -input1;
+		_abs_ = -input;
 		__putchar('-');
 		count++;
 	}
 	else
-		_abs_ = input1;
+		_abs_ = input;
 	current = _abs_;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
@@ -84,23 +91,25 @@ int print_d(int input1, int fd)
 }
 
 /**
- * convert_number - It converters function, a clone of itoa.
+ * convert_number - It converter function, a clone of itoa
+ * 
  * @num: number
  * @base: base
  * @flags: argument flags
+ *
  * Return: string
  */
-char *convert_number(long int num1, int base, int flags)
+char *convert_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = num1;
+	unsigned long n = num;
 
-	if (!(flags & CONVERT_UNSIGNED) && num1 < 0)
+	if (!(flags & CONVERT_UNSIGNED) && num < 0)
 	{
-		n = -num1;
+		n = -num;
 		sign = '-';
 
 	}

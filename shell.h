@@ -28,10 +28,12 @@
 extern char **environ;
 
 /**
- * struct liststr - The singly linked list.
- * @num: The number.
- * @str: The string variable.
- * @next: It points to the next node.
+ * struct liststr - A singly linked list
+ * 
+ * @num: The number
+ * @str: A string variable
+ * @next: Points to the next node
+ * 
  */
 typedef struct liststr
 {
@@ -41,25 +43,25 @@ typedef struct liststr
 } list_t;
 
 /**
- *struct passinfo - It contains pseudo-arguements to pass into a function.
- *@arg: It generated from getline containing arguements.
- *@argv: An array of arg.
- *@path: The string path for the current order.
- *@argc: The argument vector.
- *@line_count: The error count.
- *@err_num: The error code for exit()s.
- *@linecount_flag: If on count this line of input.
- *@fname: The program filename.
- *@env: The linked list local copy of environ.
- *@environ: The custom modified copy of environ from LL env.
- *@history: The history node.
- *@alias: The alias node.
- *@env_changed: On if environ was changed.
- *@status: The return status of the last exec'd command.
- *@cmd_buf: The address of pointer to cmd_buf, on if chaining.
+ *struct passinfo - contains pseudo-arguements to pass into a function,
+ *@arg: generated from getline containing arguements
+ *@argv: an array of arg
+ *@path: a string path for the current order
+ *@argc: the argument vector
+ *@line_count: the error count
+ *@err_num: the error code for exit()s
+ *@linecount_flag: if on count this line of input
+ *@fname: the program filename
+ *@env: linked list local copy of environ
+ *@environ: custom modified copy of environ from LL env
+ *@history: the history node
+ *@alias: the alias node
+ *@env_changed: on if environ was changed
+ *@status: the return status of the last exec'd command
+ *@cmd_buf: address of pointer to cmd_buf, on if chaining
  *@cmd_buf_type: CMD_type ||, &&, ;
- *@readfd: The fd from which to read line input.
- *@histcount: The history line number count.
+ *@readfd: the fd from which to read line input
+ *@histcount: the history line number count
  */
 typedef struct passinfo
 {
@@ -78,8 +80,8 @@ typedef struct passinfo
 	int env_changed;
 	int status;
 
-	char **cmd_buf; /* pointer to cmd ; chain buffer, for memory mangement */
-	int cmd_buf_type; /* CMD_type ||, &&, ; */
+	char **cmd_buf; 
+	int cmd_buf_type;
 	int readfd;
 	int histcount;
 } info_t;
@@ -90,8 +92,10 @@ typedef struct passinfo
 
 /**
  *struct builtin - It contains a builtin string and related function
- *@type: the builtin command flag
- *@func: the function
+ *
+ *@type: The builtin command flag
+ *@func: The function
+ *
  */
 typedef struct builtin
 {
@@ -117,8 +121,8 @@ int loophsh(char **);
 /* toem_errors.c */
 void _eputs(char *);
 int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+int _putfd(char c1, int fd1);
+int _putsfd(char *str, int fd1);
 
 /* toem_string.c */
 int _strlen(char *);
@@ -214,10 +218,10 @@ int _unsetenv(info_t *, char *);
 int _setenv(info_t *, char *, char *);
 
 /* toem_history.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *get_history_file(info_t *info1);
+int write_history(info_t *info1);
+int read_history(info_t *info1);
+int build_history_list(info_t *info1, char *buf1, int linecount);
+int renumber_history(info_t *info1);
 
 #endif

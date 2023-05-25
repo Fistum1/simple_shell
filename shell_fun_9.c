@@ -1,10 +1,12 @@
 #include "shell.h"
 
 /**
- * input_buf - The buffers chained commands.
- * @info: The parameter struct.
- * @buf: The address of buffer.
- * @len: The address of len var.
+ * input_buf - It buffers chained commands
+ * 
+ * @info: parameter struct
+ * @buf: address of buffer
+ * @len: address of len var
+ *
  * Return: bytes read
  */
 ssize_t input_buf(info_t *info1, char **buf1, size_t *len)
@@ -19,7 +21,7 @@ ssize_t input_buf(info_t *info1, char **buf1, size_t *len)
 		*buf1 = NULL;
 		signal(SIGINT, sigintHandler);
 #if USE_GETLINE
-		r = getline(buf1, &len_p, stdin);
+		r = getline(buf, &len_p, stdin);
 #else
 		r = _getline(info1, buf1, &len_p);
 #endif
@@ -44,9 +46,11 @@ ssize_t input_buf(info_t *info1, char **buf1, size_t *len)
 }
 
 /**
- * get_input - It gets a line minus the newline.
- * @info: The parameter struct.
- * Return: A bytes read.
+ * get_input - It gets a line minus the newline
+ * 
+ * @info: parameter struct
+ *
+ * Return: bytes read
  */
 ssize_t get_input(info_t *info1)
 {
@@ -72,8 +76,8 @@ ssize_t get_input(info_t *info1)
 			j++;
 		}
 
-		i = j + 1;
-		if (i >= len)
+		i = j + 1; 
+		if (i >= len) 
 		{
 			i = len = 0; 
 			info1->cmd_buf_type = CMD_NORM;
@@ -88,10 +92,12 @@ ssize_t get_input(info_t *info1)
 }
 
 /**
- * read_buf - It reads a buffer.
- * @info: The parameter struct.
+ * read_buf - It reads a buffer
+ * 
+ * @info: parameter struct
  * @buf: buffer
  * @i: size
+ *
  * Return: r
  */
 ssize_t read_buf(info_t *info1, char *buf1, size_t *i)
@@ -107,10 +113,12 @@ ssize_t read_buf(info_t *info1, char *buf1, size_t *i)
 }
 
 /**
- * _getline - It gets the next line of input from STDIN.
- * @info: The parameter struct.
- * @ptr: The address of pointer to buffer, preallocated or NULL.
- * @length: The size of preallocated ptr buffer if not NULL.
+ * _getline - It gets the next line of input from STDIN
+ * 
+ * @info: parameter struct
+ * @ptr: address of pointer to buffer, preallocated or NULL
+ * @length: size of preallocated ptr buffer if not NULL
+ *
  * Return: s
  */
 int _getline(info_t *info1, char **ptr, size_t *length)
@@ -118,12 +126,12 @@ int _getline(info_t *info1, char **ptr, size_t *length)
 	static char buf1[READ_BUF_SIZE];
 	static size_t i, len;
 	size_t k;
-	ssize_t r = 0, s1 = 0;
+	ssize_t r = 0, s = 0;
 	char *p = NULL, *new_p = NULL, *c1;
 
 	p = *ptr;
 	if (p && length)
-		s1 = *length;
+		s = *length;
 	if (i == len)
 		i = len = 0;
 
@@ -133,28 +141,30 @@ int _getline(info_t *info1, char **ptr, size_t *length)
 
 	c1 = _strchr(buf1 + i, '\n');
 	k = c1 ? 1 + (unsigned int)(c1 - buf1) : len;
-	new_p = _realloc(p, s1, s1 ? s1 + k : k + 1);
-	if (!new_p) /* MALLOC FAILURE! */
+	new_p = _realloc(p, s, s ? s + k : k + 1);
+	if (!new_p) 
 		return (p ? free(p), -1 : -1);
 
-	if (s1)
+	if (s)
 		_strncat(new_p, buf1 + i, k - i);
 	else
 		_strncpy(new_p, buf1 + i, k - i + 1);
 
-	s1 += k - i;
+	s += k - i;
 	i = k;
 	p = new_p;
 
 	if (length)
-		*length = s1;
+		*length = s;
 	*ptr = p;
-	return (s1);
+	return (s);
 }
 
 /**
- * sigintHandler - A blocks ctrl-C.
- * @sig_num: The signal number.
+ * sigintHandler - It blocks ctrl-C
+ * 
+ * @sig_num: the signal number
+ *
  * Return: void
  */
 void sigintHandler(__attribute__((unused))int sig_num)

@@ -1,8 +1,10 @@
 #include "shell.h"
 /**
- *_myexit - It will exit the shell
- *@info: The structure containing potential arguments. It used to maintain.
- *Return: It exits with a given exit status.
+ *_myexit - It exits the shell
+ *
+ *@info: Structure containing potential arguments. Used to maintain
+ *Return: exits with a given exit status
+ *
  */
 int _myexit(info_t *info1)
 {
@@ -27,9 +29,11 @@ int _myexit(info_t *info1)
 }
 
 /**
-*_mycd- It changes the current directory of the process.
-*@info: The structure containing potential arguments. It used to maintain.
+*_mycd- It changes the current directory of the process
+*
+*@info: Structure containing potential arguments. Used to maintain
 *Return: Always 0
+*
 */
 int _mycd(info_t *info1)
 {
@@ -76,9 +80,11 @@ int _mycd(info_t *info1)
 }
 
 /**
- * _myhelp - It changes the current directory of the process.
- * @info: The structure containing potential arguments.
+ * _myhelp - It changes the current directory of the process
+ * 
+ * @info: Structure containing potential arguments.
  * Return: 0
+ * 
  */
 int _myhelp(info_t *info1)
 {
